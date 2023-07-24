@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import IncomeForm from './IncomeForm';
 import Summary from './Summary';
+import { useNavigate } from 'react-router-dom';
 
 const IncomePage = () => {
   const [incomeData, setIncomeData] = useState([]);
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    // Retrieve data from local storage when the component is mounted
+    const storedData = JSON.parse(localStorage.getItem('incomeData'));
+    if (storedData) {
+      setIncomeData(storedData);
+    }
+  }, []);
+
+  // const handleSubmitIncome = (data) => {
+  //   setIncomeData([...incomeData, data]);
+  // };
 
   const handleSubmitIncome = (data) => {
-    setIncomeData([...incomeData, data]);
+    const updatedData = [...incomeData, data];
+    setIncomeData(updatedData);
+    // Save the updated data to local storage
+    localStorage.setItem('incomeData', JSON.stringify(updatedData));
+    // Reset the form fields after submission
+    navigate('/income');
   };
 
   // Calculate total income

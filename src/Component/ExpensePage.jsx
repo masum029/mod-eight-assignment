@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import ExpenseForm from './ExpenseForm';
 import Summary from './Summary';
+import { useNavigate } from 'react-router-dom';
 
 const ExpensePage = () => {
   const [expenseData, setExpenseData] = useState([]);
+const navigate=useNavigate();
+  // const handleSubmitExpense = (data) => {
+  //   setExpenseData([...expenseData, data]);
+  // };
 
   const handleSubmitExpense = (data) => {
-    setExpenseData([...expenseData, data]);
+    const updatedData=[...expenseData,data];
+    setExpenseData(updatedData);
+    localStorage.setItem('expenseData',JSON.stringify(updatedData));
+     navigate('/expenses');
   };
+
+
 
   // Calculate total expenses
   const totalExpense = expenseData.reduce((acc, item) => acc + parseFloat(item.amount), 0);

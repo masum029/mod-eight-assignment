@@ -2,6 +2,8 @@ import React from 'react';
 
 const Summary = ({ totalIncome, totalExpense }) => {
   // Initialize totalIncome and totalExpense to 0 if they are undefined
+  //totalExpense = JSON.parse(localStorage.getItem('expenseData'));
+   
   totalIncome = totalIncome || 0;
   totalExpense = totalExpense || 0;
 

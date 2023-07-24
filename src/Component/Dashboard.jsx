@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Summary from './Summary';
+
 
 export default function Dashboard() {
   return (
     <div>
-      <h2>Dashboard</h2>
+      <Summary/>
     </div>
   )
 }
